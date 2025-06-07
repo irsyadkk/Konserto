@@ -6,6 +6,8 @@ abstract class TiketView {
   void hideLoading();
   void showTiketList(List<Tiket> tiketList);
   void showError(String msg);
+  void onEditTicketSuccess();
+  void onEditTicketFail();
 }
 
 class TiketPresenter {
@@ -30,8 +32,10 @@ class TiketPresenter {
     view.showLoading();
     try {
       await BaseNetwork.edit(endpoint, data, id);
+      view.onEditTicketSuccess();
     } catch (e) {
       view.showError(e.toString());
+      view.onEditTicketFail();
     } finally {
       view.hideLoading();
     }

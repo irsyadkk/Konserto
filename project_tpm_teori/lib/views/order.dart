@@ -350,8 +350,8 @@ class _OrderPageState extends State<OrderPage>
                                       ),
                                     )
                                   : ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.push(
+                                      onPressed: () async {
+                                        final result = await Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => PayMentPage(
@@ -359,6 +359,12 @@ class _OrderPageState extends State<OrderPage>
                                                     nama: _detailData!.nama,
                                                   )),
                                         );
+                                        if (result == 'payment_success') {
+                                          Navigator.pop(
+                                              context, 'order_success');
+                                        } else if (result == 'payment_fail') {
+                                          Navigator.pop(context, 'order_fail');
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color.fromARGB(

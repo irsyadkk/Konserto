@@ -93,6 +93,17 @@ class _HomePageState extends State<HomePage> implements KonserView {
   void showError(String msg) => setState(() => _errorMsg = msg);
   @override
   void showLoading() => setState(() => _isloading = true);
+  @override
+  void onAddFail() {}
+
+  @override
+  void onAddSuccess() {}
+
+  @override
+  void onEditFail() {}
+
+  @override
+  void onEditSuccess() {}
 
   @override
   Widget build(BuildContext context) {
@@ -190,11 +201,26 @@ class _HomePageState extends State<HomePage> implements KonserView {
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.push(
+        onTap: () async {
+          final result = await Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => DetailPage(id: konser.id)),
           );
+          if (result == 'success') {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.green,
+                content: const Text("Pembelian tiket berhasil !"),
+              ),
+            );
+          } else if (result == 'fail') {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: const Text("Pembelian tiket gagal !"),
+              ),
+            );
+          }
         },
         child: Column(
           children: [

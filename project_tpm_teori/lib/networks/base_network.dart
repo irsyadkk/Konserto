@@ -180,7 +180,7 @@ class BaseNetwork {
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode(data));
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
       throw Exception("Failed to add data...${response.statusCode}");

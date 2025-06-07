@@ -140,8 +140,8 @@ class _DetailPageState extends State<DetailPage> implements DetailKonserView {
                                       ),
                                       elevation: 6,
                                     ),
-                                    onPressed: () {
-                                      Navigator.push(
+                                    onPressed: () async {
+                                      final result = await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => OrderPage(
@@ -150,6 +150,11 @@ class _DetailPageState extends State<DetailPage> implements DetailKonserView {
                                           ),
                                         ),
                                       );
+                                      if (result == 'order_success') {
+                                        Navigator.pop(context, 'success');
+                                      } else if (result == 'order_fail') {
+                                        Navigator.pop(context, 'fail');
+                                      }
                                     },
                                     child: const Text(
                                       "Pesan Tiket",

@@ -208,6 +208,90 @@ class _AdminPageState extends State<AdminPage>
     });
   }
 
+  @override
+  void onAddFail() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Konser & Tiket Gagal Ditambahkan !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  void onAddSuccess() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Konser & Tiket Berhasil Ditambahkan !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  void onEditFail() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Konser Gagal Diedit !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  void onEditSuccess() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Konser Berhasil Diedit !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  void onEditTicketFail() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Tiket Gagal Diedit !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  void onEditTicketSuccess() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Tiket Berhasil Diedit !',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
   void fetchPengunjung() {
     _selectedMenu = AdminMenu.pengunjung;
     _presenterPengunjung.loadPengunjungData('pengunjung');
@@ -414,16 +498,7 @@ class _AdminPageState extends State<AdminPage>
                 } else {
                   await postKonser();
                   Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Konser & Tiket Berhasil Ditambahkan !',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      backgroundColor: Colors.green,
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
+
                   fetchKonser();
                 }
               },
@@ -460,7 +535,7 @@ class _AdminPageState extends State<AdminPage>
       'harga': harga,
       'quota': quota
     };
-    await _presenterKonser.addKonserData('konser', data);
+    final result = await _presenterKonser.addKonserData('konser', data);
   }
 
   void editKonserHandler(Konser konser) {
@@ -613,16 +688,7 @@ class _AdminPageState extends State<AdminPage>
                     } else {
                       await updateKonser(konser.id);
                       Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Konser Berhasil Diedit !',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
+
                       fetchKonser();
                     }
                   },
@@ -740,17 +806,6 @@ class _AdminPageState extends State<AdminPage>
                 } else {
                   await updateTiket(tiket.id);
                   Navigator.pop(context);
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Tiket Berhasil Diedit !',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      backgroundColor: Colors.green,
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
                   fetchTiket();
                 }
               },

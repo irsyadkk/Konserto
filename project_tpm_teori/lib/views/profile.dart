@@ -147,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
-          content: const Text("Foto berhasil ditambahkan"),
+          content: const Text("Foto Berhasil Ditambahkan !"),
         ),
       );
     }
@@ -188,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage>
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.green,
-                        content: const Text("Foto berhasil dihapus"),
+                        content: const Text("Foto Berhasil Dihapus !"),
                       ),
                     );
                   }

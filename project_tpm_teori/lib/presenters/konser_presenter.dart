@@ -6,6 +6,10 @@ abstract class KonserView {
   void hideLoading();
   void showKonserList(List<Konser> konserList);
   void showError(String msg);
+  void onAddSuccess();
+  void onAddFail();
+  void onEditSuccess();
+  void onEditFail();
 }
 
 class KonserPresenter {
@@ -30,8 +34,10 @@ class KonserPresenter {
     view.showLoading();
     try {
       await BaseNetwork.edit(endpoint, data, id);
+      view.onEditSuccess();
     } catch (e) {
       view.showError(e.toString());
+      view.onEditFail();
     } finally {
       view.hideLoading();
     }
@@ -41,8 +47,10 @@ class KonserPresenter {
     view.showLoading();
     try {
       await BaseNetwork.post(endpoint, data);
+      view.onAddSuccess();
     } catch (e) {
       view.showError(e.toString());
+      view.onAddFail();
     } finally {
       view.hideLoading();
     }

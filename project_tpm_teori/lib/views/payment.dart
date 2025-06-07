@@ -154,21 +154,15 @@ class _PayMentPageState extends State<PayMentPage> implements OrderView {
   @override
   void onOrderSuccess() {
     _nfcSessionStarted = false;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    Navigator.pop(context);
+    Navigator.pop(context, 'payment_success');
   }
 
   @override
   void onOrderFail() {
+    _nfcSessionStarted = false;
     Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.red,
-        content: const Text("Pembayaran Gagal"),
-      ),
-    );
+    Navigator.pop(context, 'payment_fail');
   }
 
   @override
