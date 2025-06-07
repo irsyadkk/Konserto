@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "230146012659",
+    "project_id": "konser-mobile",
+    "storage_bucket": "konser-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230146012659:android:4f5868371f5ccd5c3c4e86",
+        "android_client_info": {
+          "package_name": "com.example.project_tpm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQPjPrrFXX2Jl-Ur_OJUALQ5XbIDoBcF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230146012659:android:6f15c938eaee0d0d3c4e86",
+        "android_client_info": {
+          "package_name": "com.example.project_tpm_teori"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQPjPrrFXX2Jl-Ur_OJUALQ5XbIDoBcF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
