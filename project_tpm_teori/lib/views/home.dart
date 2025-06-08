@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> implements KonserView {
   void initState() {
     super.initState();
     _presenter = KonserPresenter(this);
-    _searchController.addListener(_onSearchChanged);
+    _searchController.addListener(onSearchChanged);
     getUserName();
     fetchData();
     loadLocalPhoto();
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> implements KonserView {
     super.dispose();
   }
 
-  void _onSearchChanged() {
+  void onSearchChanged() {
     final query = _searchController.text.toLowerCase();
     setState(() {
       _filteredKonserList = _konserList
@@ -183,12 +183,21 @@ class _HomePageState extends State<HomePage> implements KonserView {
                       style: const TextStyle(color: Colors.redAccent),
                     ),
                   )
-                : ListView.builder(
-                    itemCount: _filteredKonserList.length,
-                    itemBuilder: (context, index) {
-                      final konser = _filteredKonserList[index];
-                      return _concertCard(konser);
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      showLoading();
+                      fetchData();
                     },
+                    color: Colors.yellowAccent,
+                    backgroundColor: Colors.black,
+                    child: ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: _filteredKonserList.length,
+                      itemBuilder: (context, index) {
+                        final konser = _filteredKonserList[index];
+                        return _concertCard(konser);
+                      },
+                    ),
                   ),
       ),
     );

@@ -85,9 +85,9 @@ class _AdminPageState extends State<AdminPage>
     _presenterKonser = KonserPresenter(this);
     _presenterUser = UserPresenter(this);
     _presenterTiket = TiketPresenter(this);
-    _konserSearchController.addListener(_onSearchKonserChanged);
-    _userSearchController.addListener(_onSearchUserChanged);
-    _tiketSearchController.addListener(_onSearchTiketChanged);
+    _konserSearchController.addListener(onSearchKonserChanged);
+    _userSearchController.addListener(onSearchUserChanged);
+    _tiketSearchController.addListener(onSearchTiketChanged);
     fetchKonser();
   }
 
@@ -127,7 +127,7 @@ class _AdminPageState extends State<AdminPage>
     return true;
   }
 
-  void _onSearchKonserChanged() {
+  void onSearchKonserChanged() {
     if (!mounted) return;
     final query = _konserSearchController.text.toLowerCase();
     setState(() {
@@ -137,7 +137,7 @@ class _AdminPageState extends State<AdminPage>
     });
   }
 
-  void _onSearchUserChanged() {
+  void onSearchUserChanged() {
     if (!mounted) return;
     final query = _userSearchController.text.toLowerCase();
     setState(() {
@@ -147,7 +147,7 @@ class _AdminPageState extends State<AdminPage>
     });
   }
 
-  void _onSearchTiketChanged() {
+  void onSearchTiketChanged() {
     if (!mounted) return;
     final query = _tiketSearchController.text.toLowerCase();
     setState(() {
@@ -356,7 +356,7 @@ class _AdminPageState extends State<AdminPage>
                     final DateTime? picked = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate: DateTime(2020),
+                      firstDate: DateTime.now(),
                       lastDate: DateTime(2100),
                     );
                     if (picked != null) {
@@ -498,7 +498,6 @@ class _AdminPageState extends State<AdminPage>
                 } else {
                   await postKonser();
                   Navigator.pop(context);
-
                   fetchKonser();
                 }
               },
@@ -535,7 +534,7 @@ class _AdminPageState extends State<AdminPage>
       'harga': harga,
       'quota': quota
     };
-    final result = await _presenterKonser.addKonserData('konser', data);
+    await _presenterKonser.addKonserData('konser', data);
   }
 
   void editKonserHandler(Konser konser) {

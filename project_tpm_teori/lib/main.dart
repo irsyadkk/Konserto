@@ -9,11 +9,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-// Inisialisasi local notification plugin
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-// Handler background (wajib untuk FirebaseMessaging.onBackgroundMessage)
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling background message: ${message.messageId}');
@@ -26,7 +24,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Future.delayed(Duration(seconds: 3));
+  await Future.delayed(Duration(seconds: 2));
+
   FlutterNativeSplash.remove();
   await Permission.notification.request();
   const AndroidInitializationSettings initializationSettingsAndroid =
@@ -47,6 +46,7 @@ void main() async {
   print('User granted permission: ${settings.authorizationStatus}');
   String? token = await messaging.getToken();
   print('FCM Token: $token');
+
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Pesan diterima: ${message.notification?.title}');
 

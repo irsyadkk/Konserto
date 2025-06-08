@@ -46,7 +46,7 @@ class _KesanPesanPageState extends State<KesanPesanPage> {
                   thickness: 4,
                 ),
                 Text(
-                  'Saran',
+                  'Pesan',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Divider(

@@ -24,16 +24,4 @@ class UserPresenter {
       view.hideLoading();
     }
   }
-
-  Future<void> editUserData(
-      String endpoint, Map<String, dynamic> data, int id) async {
-    view.showLoading();
-    try {
-      await BaseNetwork.edit(endpoint, data, id);
-    } catch (e) {
-      view.showError(e.toString());
-    } finally {
-      view.hideLoading();
-    }
-  }
 }

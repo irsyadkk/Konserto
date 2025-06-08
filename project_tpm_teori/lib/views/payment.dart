@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:project_tpm_teori/presenters/order_presenter.dart';
-import 'package:project_tpm_teori/views/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PayMentPage extends StatefulWidget {

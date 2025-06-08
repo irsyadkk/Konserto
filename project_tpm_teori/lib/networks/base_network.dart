@@ -130,7 +130,7 @@ class BaseNetwork {
     if (response.statusCode == 201) {
       return true;
     } else {
-      throw Exception("Username sudah dipakai${response.statusCode}");
+      throw Exception("Failed to register User...${response.statusCode}");
     }
   }
 

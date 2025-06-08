@@ -45,14 +45,29 @@ class _DaftarPageState extends State<DaftarPage> implements RegisView {
         ),
       );
       return;
+    } else if (int.tryParse(_umurController.text) == null ||
+        int.tryParse(_umurController.text)! <= 0 ||
+        int.tryParse(_umurController.text)! > 150) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Mohon isi Umur Dengan Nilai Yang Valid !',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
+        ),
+      );
+      return;
+    } else {
+      final data = {
+        'nama': nama,
+        'umur': umur,
+        'email': email,
+        'pass': pass,
+      };
+      presenter.regisUser('register', data);
     }
-    final data = {
-      'nama': nama,
-      'umur': umur,
-      'email': email,
-      'pass': pass,
-    };
-    presenter.regisUser('register', data);
   }
 
   @override

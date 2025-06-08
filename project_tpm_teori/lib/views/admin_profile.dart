@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_tpm_teori/presenters/logout_presenter.dart';
 import 'package:project_tpm_teori/views/login.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AdminProfilePage extends StatefulWidget {
   const AdminProfilePage({super.key});
@@ -12,7 +13,8 @@ class AdminProfilePage extends StatefulWidget {
 class _AdminProfilePageState extends State<AdminProfilePage>
     implements LogoutView {
   late LogoutPresenter _logoutPresenter;
-
+  final String igUrl = "https://www.instagram.com/irsyad.kh/";
+  final String steamUrl = "https://steamcommunity.com/id/justr3lax/";
   bool _isLoading = false;
   String? _errorMsg;
 
@@ -52,6 +54,15 @@ class _AdminProfilePageState extends State<AdminProfilePage>
     setState(() {
       _isLoading = true;
     });
+  }
+
+  void _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.platformDefault);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   void logoutHandler() async {
@@ -202,6 +213,27 @@ class _AdminProfilePageState extends State<AdminProfilePage>
                             ],
                           ),
                         ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: Image.asset(
+                              'assets/images/instagram.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                            onPressed: () => _launchURL(igUrl),
+                          ),
+                          IconButton(
+                            icon: Image.asset(
+                              'assets/images/steam.png',
+                              width: 45,
+                              height: 45,
+                            ),
+                            onPressed: () => _launchURL(steamUrl),
+                          ),
+                        ],
                       )
                     ])));
   }

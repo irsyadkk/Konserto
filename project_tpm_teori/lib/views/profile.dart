@@ -65,6 +65,7 @@ class _ProfilePageState extends State<ProfilePage>
     if (email != null) {
       final box = Hive.box<ProfilePhoto>('profile_photos');
       final photo = box.get(email);
+      print('📷 Load photo for $email: ${photo?.photoPath}');
       final decryptedPath =
           photo != null ? EncryptionHelper.decryptText(photo.photoPath) : null;
       setState(() {
@@ -147,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
-          content: const Text("Foto Berhasil Ditambahkan !"),
+          content: const Text("Foto Berhasil Diubah !"),
         ),
       );
     }
