@@ -290,7 +290,7 @@ class _ProfilePageState extends State<ProfilePage>
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Tiket yang kamu miliki:",
+                          "Tiket yang kamu miliki :",
                           style: TextStyle(
                             color: Colors.yellowAccent,
                             fontSize: 18,

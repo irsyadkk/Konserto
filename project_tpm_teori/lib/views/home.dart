@@ -190,14 +190,29 @@ class _HomePageState extends State<HomePage> implements KonserView {
                     },
                     color: Colors.yellowAccent,
                     backgroundColor: Colors.black,
-                    child: ListView.builder(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: _filteredKonserList.length,
-                      itemBuilder: (context, index) {
-                        final konser = _filteredKonserList[index];
-                        return _concertCard(konser);
-                      },
-                    ),
+                    child: _filteredKonserList.isEmpty
+                        ? Center(
+                            child: Column(
+                              children: const [
+                                Icon(Icons.event_busy,
+                                    size: 64, color: Colors.white54),
+                                SizedBox(height: 12),
+                                Text(
+                                  "Belum ada konser yang tersedia !",
+                                  style: TextStyle(
+                                      color: Colors.white54, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemCount: _filteredKonserList.length,
+                            itemBuilder: (context, index) {
+                              final konser = _filteredKonserList[index];
+                              return _concertCard(konser);
+                            },
+                          ),
                   ),
       ),
     );
